@@ -1,0 +1,128 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>麻雀RTC</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="//cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
+  <script type="text/javascript" src="../key.js"></script>
+  <script type="text/javascript" src="script.js"></script>
+</head>
+
+<body>
+
+<div class="pure-g">
+
+  <!-- Video area -->
+  <div class="pure-u-2-3" id="video-container">
+   <div id="their-videos"></div>
+   <video id="my-video" muted="true" draggable="true" autoplay playsinline></video><br>
+   <div id="my">...</div>
+   <div id="their-video1">
+   <video id="there-video1" muted="true" draggable="true" autoplay playsinline></video>
+   <div id="video1">...</div>
+   </div>
+   <div id="their-video2">
+   <video id="there-video2" muted="true" draggable="true" autoplay playsinline></video>
+   <div id="video2">...</div>
+   </div>
+   <div id="their-video3">
+   <video id="there-video3" muted="true" draggable="true" autoplay playsinline></video>
+   <div id="video3">...</div>
+   </div>
+ </div>
+  <!-- Steps -->
+  <div class="pure-u-1-3">
+    <h2>SkyWay Video Chat</h2>
+
+    <div class="select">
+      <label for="audioSource">Audio input source: </label><select id="audioSource"></select>
+    </div>
+
+    <div class="select">
+      <label for="videoSource">Video source: </label><select id="videoSource"></select>
+    </div>
+
+    <!-- Get local audio/video stream -->
+    <div id="step1">
+      <p>Please click `allow` on the top of the screen so we can access your webcam and microphone for calls.</p>
+      <div id="step1-error">
+        <p>Failed to access the webcam and microphone. Make sure to run this demo on an http server and click allow when asked for permission by the browser.</p>
+        <a href="#" class="pure-button pure-button-error" id="step1-retry">Try again</a>
+      </div>
+    </div>
+
+    <p>Your id: <span id="my-id">...</span></p>
+    <!-- Make calls to others -->
+    <div id="step2">
+     <h3>Make a call</h3>
+     <form id="make-call" class="pure-form">
+       ルーム名：<input type="text" placeholder="Join room..." id="join-room"><br>
+       名前：<input type="text" placeholder="name..." id="name"><br>
+       <input type="radio" name="direction" id="ton" value="東">東<br>
+       <input type="radio" name="direction" id="nan" value="南">南<br>
+       <input type="radio" name="direction" id="sha" value="西">西<br>
+       <input type="radio" name="direction" id="pe"  value="北">北<br>
+       <button class="pure-button pure-button-success" type="submit">Join</button>
+     </form>
+    </div>
+
+    <!-- Call in progress -->
+    <div id="step3">
+      <p>Currently in room <span id="room-id">...</span></p>
+      <p><a href="#" class="pure-button pure-button-error" id="end-call">End call</a></p>
+    </div>
+  </div>
+</div>
+
+<dl id="panel">
+  <dt>あがり</dt>
+  <dd>
+    <form id="submit-agari">
+      <p>
+        あがったひと
+        <input name="direction" type="radio" id="ton-agari" value="1" />  東<span class="ton-agari"></span>
+        <input name="direction" type="radio" id="nan-agari "value="2" /> 南<span class="nan-agari"></span>
+        <input name="direction" type="radio" id="sha-agari" value="3" /> 西<span class="sha-agari"></span>
+        <input name="direction" type="radio" id="pe-agari" value="4" /> 北<span class="pe-agari"></span>
+        <br>
+        あがり方　　
+        <input name="agari" type="radio" id="ton-huri" value="1" /> 東<span class="ton-agari"></span>
+        <input name="agari" type="radio" id="nan-huri" value="2" /> 南<span class="nan-agari"></span>
+        <input name="agari" type="radio" id="sha-huri" value="3" /> 西<span class="sha-agari"></span>
+        <input name="agari" type="radio" id="pe-huri" value="4" /> 北<span class="pe-agari"></span>
+        <input name="agari" type="radio" id="tumo" value="0" /> ツモ　
+        <input name="agari" type="submit"  value="送信" />　
+      </p>
+   </form>
+
+  </dd>
+  <dt>半荘おわり</dt>
+  <dd>
+    <form id="end">
+      <p>
+     東：<input type="text" name="東" /><br>
+     南：<input type="text" name="南" /><br>
+     西：<input type="text" name="西" /><br>
+     北：<input type="text" name="北" /><br>
+     <input type="submit" value="送信" />　
+      </p>
+  </form>
+  </dd>
+</dl>
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+$(function() {
+  //最初は全てのパネルを非表示に
+  $('#panel > dd').hide();
+  $('#panel > dt')
+    .click(function(e){
+ //選択したパネルを開く
+      $('+dd', this).slideToggle(500);
+    })
+});
+</script> -->
+
+</body>
+</html>
